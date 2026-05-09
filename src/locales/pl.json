@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "about": "o mnie",
+    "services": "oferta",
+    "portfolio": "portfolio",
+    "contact": "kontakt"
+  },
+  "hero": {
+    "h1": "Nazywam się <span>Bartosz Sowa</span>. Koduję i projektuję."
+  },
+  "about": {
+    "h2": "Kim jestem",
+    "p-1": "Nazywam się Bartosz Sowa i zajmuję się projektowaniem stron internetowych i kodowaniem.",
+    "p-2": "Jeśli chodzi o design, to niektóre strony projektuję sam (przykładem jest to portfolio), jednak o wiele częściej projekt jest wspólnym dziełem moim oraz klienta. Jestem otwarty na współpracę odnośnie każdego detalu, przecież pracujemy w końcu nad Twoją stroną, nie moją:) "
+  },
+  "features": {
+    "h2": "Ale jak?",
+    "h3-1": "Responsywnie",
+    "p-1": "Strona wygląda dobrze niezależnie od tego, na czym jest oglądana.",
+    "h3-2": "Pod Kontrolą",
+    "p-2": "Zarządzasz treścią za pomocą panelu, posiadającego wyłącznie przydatne fukcje.",
+    "h3-3": "Szybko",
+    "p-3": "Framework Vue.js zapewnia szybkość nieporównywalną z Wordpressem i jemu podobnymi."
+  },
+  "portfolio": {
+    "h2": "Portfolio"
+  },
+  "contact": {
+    "h2": "Kontakt",
+    "location": "Tychy, Śląsk"
+  },
+  "footer": {
+    "note": "Bartosz Sowa {0}2022",
+    "animation": "Animacja: <a href='http://www.gosialapinski.com' target='_blank'>Gosia Lapinski</a>"
+  }
+}

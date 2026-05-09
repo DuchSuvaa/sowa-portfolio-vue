@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "about": "о mně",
+    "services": "nabídka",
+    "portfolio": "portfolio",
+    "contact": "kontakt"
+  },
+  "hero": {
+    "h1": "Jimeniuji se <span>Bartosz Sowa</span>. Kóduji a navrhuji."
+  },
+  "about": {
+    "h2": "Kdo jsem ",
+    "p-1": "Jmenuji se Bartosz Sowa a kóduji a navrhuji webové stránky.",
+    "p-2": "Pokud jde o design, navrhuji některé stránky sám (příkladem je portfolio), ale mnohem častěji je design společnou prací mě a klienta. Jsem otevřen spolupráci ohledně všech detailů. Konečně pracujeme na vašem webu, ne na mém:) "
+  },
+  "features": {
+    "h2": "Ale jak?",
+    "h3-1": "Responzivní",
+    "p-1": "Web vypadá dobře bez ohledu na to, na jakém zařízení je zobrazen.",
+    "h3-2": "Pod kontrolou",
+    "p-2": "Obsah spravujete pomocí panelu s pouze užitečnými funkcemi.",
+    "h3-3": "Rychle",
+    "p-3": "Rámec Vue.js poskytuje rychlost, kterou nemá Wordpress a jemu podobné."
+  },
+  "portfolio": {
+    "h2": "Portfolio"
+  },
+  "contact": {
+    "h2": "Kontakt",
+    "location": "Tychy, Slezsko"
+  },
+  "footer": {
+    "note": "Bartosz Sowa @2022",
+    "animation": "Animacje: <a href='http://www.gosialapinski.com' target='_blank'>Gosia Lapinski</a>"
+  }
+}

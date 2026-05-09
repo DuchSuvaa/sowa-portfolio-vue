@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "about": "about",
+    "services": "services",
+    "portfolio": "portfolio",
+    "contact": "contact"
+  },
+  "hero": {
+    "h1": "My name is <span>Bartosz Sowa</span>. I\u00A0code and design."
+  },
+  "about": {
+    "h2": "Who Iam",
+    "p-1": "My name is Bartosz Sowa. I design web sites and code.",
+    "p-2": "When it comes to design, I create pages myself from scratch (like this portfolio for example), but more often than not I work closely on the design with my client. I'm open to collaborating on every detail - it's your website after all, and my primary role is help you realise your vision."
+  },
+  "features": {
+    "h2": "But how?",
+    "h3-1": "Responsively",
+    "p-1": "The site looks good across all devices.",
+    "h3-2": "Under Control",
+    "p-2": "Manage the content of your site using a panel with only the functions you need.",
+    "h3-3": "Fast",
+    "p-3": "The Vue.js framework provides speed unmatched by stuff like Wordpress."
+  },
+  "portfolio": {
+    "h2": "Portfolio"
+  },
+  "contact": {
+    "h2": "Contact",
+    "location": "Tychy, Silesia"
+  },
+  "footer": {
+    "note": "Bartosz Sowa @2022",
+    "animation": "Animation: <a href='http://www.gosialapinski.com' target='_blank'>Gosia Lapinski</a>"
+  }
+}
