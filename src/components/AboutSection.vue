@@ -8,10 +8,7 @@
         </video>
       </div>
       <div id="about__text">
-        <div class="stroke-magic">
-          <h2> {{ t('about.h2' )}} </h2>
-          <h2> {{ t('about.h2' )}} </h2>
-        </div>
+        <SectionHeading :headingText="t('about.h2')" />
         <p>{{ t('about.p-1') }}</p>
         <p>{{ t('about.p-2') }}</p>
       </div>
@@ -22,6 +19,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n'
+import SectionHeading from '../components/SectionHeading.vue'
 
 const { t, locale } = useI18n()
 

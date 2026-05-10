@@ -1,10 +1,6 @@
 <template>
   <section id="features">
-    <div class="stroke-magic">
-      <h2>{{ t('features.h2' )}}</h2>
-      <h2>{{ t('features.h2' )}}</h2>
-    </div>
-
+    <SectionHeading :headingText="t('features.h2')" />
     <div class="features__content">
       <div class="features__feature">
         <div class="features__image-container">
@@ -39,6 +35,7 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import SectionHeading from './SectionHeading.vue'
 
 const { t, locale } = useI18n()
 </script>

@@ -1,14 +1,11 @@
 <template>
-  <div class="stroke-magic">
-    <h2>404</h2>
-    <h2>404</h2>
-  </div>
+  <SectionHeading headingText="404" />
 </template>
 
 <script setup>
-
+import SectionHeading from './SectionHeading.vue'
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>

@@ -1,9 +1,6 @@
 <template>
   <section id="admin">
-    <div class="stroke-magic">
-      <h2>Admin</h2>
-      <h2>Admin</h2>
-    </div>
+    <SectionHeading :headingText="t('admin.h2')" />
     <div class="admin__content">
       <ManagePortfolio/>
       <button @click="logout">Logout</button>
@@ -12,9 +9,12 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
 import { useStore } from '../pinia/store'
-import ManagePortfolio from '../components/ManagePortfolio.vue';
+import ManagePortfolio from '../components/ManagePortfolio.vue'
+import SectionHeading from '../components/SectionHeading.vue'
 
+const { t } = useI18n()
 const store = useStore()
 
 const logout = () => {

@@ -65,26 +65,7 @@ button {
   }
 }
 
-.stroke-magic {
-  position: relative;
-  h1:first-child {
-    -webkit-text-stroke: 16px $black;
-    @media (max-width: 500px) { -webkit-text-stroke: 10px $black; }
-  }
-  h2:first-child {
-    -webkit-text-stroke: 8px $black;
-  }
-  h1:last-child, h2:last-child  {
-    width: 100%;
-    color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
-    span {
-      color: $blue;
-    }
-  }
-}
+
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;

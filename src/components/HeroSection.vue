@@ -1,14 +1,12 @@
 <template>
   <section id="hero">
-    <div class="stroke-magic">
-      <h1 v-html="$t('hero.h1')"></h1>
-      <h1 v-html="$t('hero.h1')"></h1>
-    </div>
+    <SectionHeading :headingText="t('hero.h1')" level="h1" />
   </section>
 </template>
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import SectionHeading from './SectionHeading.vue'
 
 const { t } = useI18n()
 </script>
@@ -18,9 +16,5 @@ const { t } = useI18n()
   background-image: url("/hero-bg.png");
   background-size: cover;
   @include flex-center;
-  flex: auto auto auto;
-  @media (max-width: 800px) { h1 { font-size: 5rem; } }
-  @media (max-width: 500px) { h1 { font-size: 4rem; } }
 }
-
 </style>

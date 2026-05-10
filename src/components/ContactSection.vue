@@ -1,9 +1,6 @@
 <template>
   <section id="contact">
-    <div class="stroke-magic">
-      <h2>{{ t('contact.h2' )}}</h2>
-      <h2>{{ t('contact.h2' )}}</h2>
-    </div>
+    <SectionHeading :headingText="t('contact.h2')" />
     <div class="contact__options">
       <div class="contact__option">
         <div class="contact__image-container">
@@ -29,6 +26,7 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import SectionHeading from './SectionHeading.vue'
 
 const { t } = useI18n()
 </script>

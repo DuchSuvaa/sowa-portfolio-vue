@@ -1,9 +1,6 @@
 <template>
   <section id="portfolio">
-    <div class="stroke-magic">
-      <h2>{{ t('portfolio.h2' )}}</h2>  
-      <h2>{{ t('portfolio.h2' )}}</h2>  
-    </div>
+    <SectionHeading headingText="Portfolio" />
     <div class="portfolio__list">
       <ListItem v-for="item in items" :key="item.id" :item="item" @removed="remove" />
     </div>
@@ -15,6 +12,7 @@ import { onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n'
 import { useStore } from '../pinia/store'
 import ListItem from '../components/ListItem.vue'
+import SectionHeading from '../components/SectionHeading.vue'
 
 const store = useStore()
 const items = ref(null)

@@ -1,9 +1,6 @@
 <template>
   <section id="login">
-    <div class="stroke-magic">
-      <h2>Login</h2>
-      <h2>Login</h2>
-    </div>
+    <SectionHeading headingText="Login" />
     <form @submit.prevent="login">
       <div class="form__field">
         <label for="email">email</label>
@@ -20,6 +17,8 @@
 
 <script setup>
 import { useStore } from '../pinia/store'
+import SectionHeading from '../components/SectionHeading.vue'
+
 const loginForm = {
   email: '',
   password: ''

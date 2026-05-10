@@ -32,5 +32,8 @@
   "footer": {
     "note": "Bartosz Sowa @2022",
     "animation": "Animation: <a href='http://www.gosialapinski.com' target='_blank'>Gosia Lapinski</a>"
+  },
+  "admin": {
+    "h2": "Admin Panel"
   }
 }

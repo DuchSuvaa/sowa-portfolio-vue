@@ -32,5 +32,8 @@
   "footer": {
     "note": "Бартош Сова @2022",
     "animation": "Анимация: <a href='http://www.gosialapinski.com' target='_blank'>Gosia Lapinski</a>"
+  },
+  "admin": {
+    "h2": "Admin Panel"
   }
 }
