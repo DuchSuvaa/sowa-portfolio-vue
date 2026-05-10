@@ -16,15 +16,18 @@
 <script setup>
 import { ref } from 'vue'
 
-const emit = defineEmits([ 'file' ])
+const emit = defineEmits([ 'file', 'fileChange' ])
 const dropzoneActive = ref(false)
+const file = ref(null)
 
 const toggleActive = () => { dropzoneActive.value = !dropzoneActive.value }
 
 const handleChange = async (e) => {
   if (e.target.files[0]) {
+    file.value = e.target.files[0]
     emit('fileChange', e.target.files[0])
   } else {
+    file.value = null
     emit('fileChange', null)
   }
 }

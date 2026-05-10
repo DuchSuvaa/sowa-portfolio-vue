@@ -8,27 +8,34 @@
     <form @submit.prevent="addItem" @click.stop>
       <div class="form__field">
         <label for="item-name">Nazwa</label>
-        <input type="text" id="item-name" v-model="newItem.name">
+        <input type="text" id="item-name" v-model="newItem.name" placeholder="np. Sklep online">
+        <span class="error-msg" v-if="showErrors && !newItem.name.length">To pole jest wymagane</span>
       </div>
       <div class="form__field">
         <label for="item-tech">Tech</label>
-        <input type="text" id="item-tech" v-model="newItem.tech">
+        <input type="text" id="item-tech" v-model="newItem.tech" placeholder="np. Vue, Firebase">
+        <span class="error-msg" v-if="showErrors && !newItem.tech.length">To pole jest wymagane</span>
       </div>
       <div class="form__field">
         <label for="item-href">Href</label>
-        <input type="text" id="item-href" v-model="newItem.href">
+        <input type="text" id="item-href" v-model="newItem.href" placeholder="https://...">
+        <span class="error-msg" v-if="showErrors && !newItem.href.length">To pole jest wymagane</span>
+        <span class="error-msg" v-else-if="showErrors && !isUrlValid(newItem.href)">Niepoprawny format adresu URL</span>
       </div>
       <DropZone @drop.prevent="drop" @fileChange="handleChange" />
+      <span class="error-msg" v-if="showErrors && !file" style="margin-bottom: 2rem;">Musisz wybrać obrazek</span>
       <img v-if="file" :src="temporaryURL" class="temporaryIMG">
-      {{ temporaryUrl }}
-      <button :disabled="disabled || !newItem.name.length || !newItem.tech.length || !newItem.href.length">submit</button>
+      <button :disabled="uploading">
+        <span v-if="!uploading">Dodaj projekt</span>
+        <span v-else>Wysyłanie...</span>
+      </button>
       <img src="../assets/close.svg" @click="addBoxActive = !addBoxActive" class="close-icon">
     </form>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useStore } from '../pinia/store'
 import DropZone from '../components/DropZone.vue'
 
@@ -41,15 +48,32 @@ const newItem = ref({
   order: null
 })
 const addBoxActive = ref(false)
-const disabled = ref(true)
+const uploading = ref(false)
+const showErrors = ref(false)
 const temporaryURL = ref(null)
+
+const isUrlValid = (url) => {
+  try {
+    new URL(url);
+    return true;
+  } catch (_) {
+    return false;  
+  }
+}
+
+const isFormValid = computed(() => {
+  return newItem.value.name.length > 0 &&
+         newItem.value.tech.length > 0 &&
+         newItem.value.href.length > 0 &&
+         isUrlValid(newItem.value.href) &&
+         file.value !== null
+})
 
 const handleChange = async (payload) => {
   temporaryURL.value = []
   if (payload) {
     file.value = payload
     temporaryURL.value = URL.createObjectURL(file.value)
-    disabled.value = false
   } else {
     file.value = null
   }
@@ -59,15 +83,24 @@ const drop = (e) => {
   temporaryURL.value = []
   file.value = e.dataTransfer.files[0]
   temporaryURL.value = URL.createObjectURL(file.value)
-  disabled.value = false
 }
 
 const addItem = async () => {
-  disabled.value = true
+  if (!isFormValid.value) {
+    showErrors.value = true
+    return
+  }
+  
+  uploading.value = true
+  showErrors.value = false
   const downloadUrl = await store.storeImage(file.value)
   await store.addItem(newItem.value, downloadUrl)
   addBoxActive.value = false
-  disabled.value = false
+  uploading.value = false
+  // Reset form
+  newItem.value = { name: '', tech: '', href: '', order: null }
+  file.value = null
+  temporaryURL.value = null
 }
 </script>
 
@@ -96,28 +129,45 @@ const addItem = async () => {
   @include backdrop;
   z-index: 2;
   form {
-    max-width: 36rem;
+    width: 90%;
+    max-width: 40rem;
     background-color: white;
-    padding: 2rem;
+    padding: 3rem;
     @include flex-center;
     flex-direction: column;
     border: 1px solid transparent;
-    border-radius: 5px;
+    border-radius: 8px;
     position: relative;
     .form__field {
       width: 100%;
-      padding: 1rem;
-      @include flex-space-between;
-      flex-direction: row;
-      column-gap: 2rem;
+      padding: 0.8rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      label {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: $blue;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+      }
       input {
+        width: 100%;
         border: none;
-        border-bottom: 1px solid $black;
-        padding: 0.5rem 0;
+        border-bottom: 2px solid #eee;
+        padding: 0.8rem 0;
+        font-size: 1.6rem;
+        transition: border-color 0.3s;
         &:focus {
           outline: none;
+          border-bottom-color: $blue;
         }
       }
+    }
+    .error-msg {
+      color: #ff4d4f;
+      font-size: 1.1rem;
+      margin-top: 0.4rem;
     }
     .temporaryIMG {
       width: 100%;

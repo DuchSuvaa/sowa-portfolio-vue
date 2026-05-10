@@ -1,7 +1,7 @@
 <template>
   <section id="admin">
-    <SectionHeading :headingText="t('admin.h2')" />
     <div class="admin__content">
+      <SectionHeading :headingText="t('admin.h2')" />
       <ManagePortfolio/>
       <button @click="logout">Logout</button>
     </div>

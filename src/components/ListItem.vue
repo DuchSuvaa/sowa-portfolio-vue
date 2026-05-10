@@ -29,7 +29,6 @@ import { useRoute } from 'vue-router'
 import ConfirmationBox from '../components/ConfirmationBox.vue'
 
 const props = defineProps([ 'item', 'admin' ])
-const emit = defineEmits([ 'removed' ])
 const store = useStore()
 const changesMade = ref(false)
 const showConfirmationBox = ref(false)
@@ -51,7 +50,6 @@ const deleteItem = () => {
   try {
     store.deleteItem(props.item.id)
     showConfirmationBox.value = false
-    emit('removed', props.item.id )
   } catch (err) {
     store.setError(err)
   }

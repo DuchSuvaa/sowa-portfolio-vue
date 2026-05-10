@@ -1,9 +1,8 @@
 import { defineStore } from 'pinia'
 import router from '../router'
-import { db, auth, storage } from '../firebase/config'
+import { db, auth } from '../firebase/config'
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { collection, doc, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from 'firebase/firestore'
-import { ref as fbRef, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 export const useStore = defineStore('main', {
   state: () => ({ 
@@ -11,7 +10,8 @@ export const useStore = defineStore('main', {
     notification: null as any,
     navActive: false,
     langMenuActive: false,
-    user: null as any
+    user: null as any,
+    portfolio: [] as any[]
   }),
   getters: {
     // doubleCount: (state) => state.count * 2,
@@ -63,31 +63,52 @@ export const useStore = defineStore('main', {
       }
       return processedDocs
     },
+    async fetchPortfolio() {
+      this.portfolio = await this.getCollection('portfolio')
+      this.portfolio.sort((a, b) => parseInt(b.order) - parseInt(a.order))
+    },
     async storeImage(file: File) {
       try {
-        const filePath = `images/${file.name}`
-        const storageRef = fbRef(storage, filePath)
-        await uploadBytes(storageRef, file)
-        const downloadURL = await getDownloadURL(storageRef)
-        this.setNotification(downloadURL)
-        return downloadURL
+        const cloudName = 'dv8vmcin0'
+        const uploadPreset = 'sowa-portfolio'
+        
+        const formData = new FormData()
+        formData.append('file', file)
+        formData.append('upload_preset', uploadPreset)
+
+        const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+          method: 'POST',
+          body: formData
+        })
+        
+        const data = await res.json()
+        if (data.secure_url) {
+          return data.secure_url
+        } else {
+          throw new Error(data.error?.message || 'Błąd uploadu Cloudinary')
+        }
       } catch (err: any) {
         this.setError(err)
       }   
     },
     async addItem(newItem: any, url: string) {
       try {
-        const items = await this.getCollection('portfolio')
-        const maxOrder = items.length > 0 ? Math.max(...items.map((item: any) => item.order)) : 0
+        const maxOrder = this.portfolio.length > 0 ? Math.max(...this.portfolio.map((item: any) => item.order)) : 0
         const order = maxOrder + 1
         const collectionRef = collection(db, 'portfolio')
-        await addDoc(collectionRef, {
+        
+        const docData = {
           name: newItem.name,
           tech: newItem.tech,
           href: newItem.href,
           order: order,
           imageUrl: url
-        })
+        }
+        
+        const res = await addDoc(collectionRef, docData)
+        
+        // Update local state immediately
+        this.portfolio.unshift({ ...docData, id: res.id })
       } catch(err: any) {
         this.setError(err)
       }
@@ -105,6 +126,7 @@ export const useStore = defineStore('main', {
       try {
         const docRef = doc(db, 'portfolio', id)
         await deleteDoc(docRef)
+        this.portfolio = this.portfolio.filter(item => item.id !== id)
         this.setNotification('Dokument skasowany, id: ' + id)
       } catch (err: any) {
         this.setError(err)
