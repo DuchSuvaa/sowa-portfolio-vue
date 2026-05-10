@@ -2,16 +2,18 @@
   <div id="header__wrapper" @click.stop>
     <header>
       <div id="header__logo">
-        <a href="#hero"><img src="/sowa-logo-3.png"></a>
+        <RouterLink to="/" v-if="route.path !== '/'">
+          <img src="/sowa-logo-3.png">
+        </RouterLink>
+        <a href="#hero" v-else>
+          <img src="/sowa-logo-3.png">
+        </a>
       </div>
-      <nav :class="{ 'header__menu-active': store.navActive  }" @click="store.navActive = false" v-if="route.path !== '/admin'">
-        <a href="#about">{{ t( 'nav.about' )}}</a>
-        <a href="#features">{{ t( 'nav.services' )}}</a>
-        <a href="#portfolio">{{ t( 'nav.portfolio' )}}</a>
-        <a href="#contact">{{ t( 'nav.contact' )}}</a>
-      </nav>
-      <nav v-else>
-        <RouterLink to="/">front-end</RouterLink>
+      <nav :class="{ 'header__menu-active': store.navActive  }" @click="store.navActive = false">
+        <a href="/#about">{{ t( 'nav.about' )}}</a>
+        <a href="/#features">{{ t( 'nav.services' )}}</a>
+        <a href="/#portfolio">{{ t( 'nav.portfolio' )}}</a>
+        <a href="/#contact">{{ t( 'nav.contact' )}}</a>
       </nav>
       <div id="header__language" @click="store.langMenuActive = !store.langMenuActive" :data-locale="locale">
         <img :src="images[locale]" />

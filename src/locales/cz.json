@@ -6,10 +6,10 @@
     "contact": "kontakt"
   },
   "hero": {
-    "h1": "Jimeniuji se <span>Bartosz Sowa</span>. Kóduji a navrhuji."
+    "h1": "Jmenuji se <span>Bartosz Sowa</span>. Kóduji a navrhuji."
   },
   "about": {
-    "h2": "Kdo jsem ",
+    "h2": "Kdo jsem",
     "p-1": "Jmenuji se Bartosz Sowa a kóduji a navrhuji webové stránky.",
     "p-2": "Pokud jde o design, navrhuji některé stránky sám (příkladem je portfolio), ale mnohem častěji je design společnou prací mě a klienta. Jsem otevřen spolupráci ohledně všech detailů. Konečně pracujeme na vašem webu, ne na mém:) "
   },
@@ -34,6 +34,6 @@
     "animation": "Animacje: <a href='http://www.gosialapinski.com' target='_blank'>Gosia Lapinski</a>"
   },
   "admin": {
-    "h2": "Admin Panel"
+    "h2": "Administrační panel"
   }
 }
