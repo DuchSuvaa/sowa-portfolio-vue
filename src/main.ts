@@ -18,7 +18,8 @@ const i18n = createI18n({
   locale: 'pl',
   fallbackLocale: 'pl',
   localeDir: 'locales',
-  globalInjection: true
+  globalInjection: true,
+  warnHtmlMessage: false
 })
 
 let app: any
@@ -27,12 +28,7 @@ const pinia = createPinia()
 
 onAuthStateChanged(auth, () => {
   if (!app) {
-    app = createApp(App, {
-      setup() {
-        const { t } = useI18n()
-        return { t }
-      }
-    })
+    app = createApp(App)
       .use(head)
       .use(pinia)
       .use(i18n)

@@ -29,15 +29,16 @@
         <span v-if="!uploading">Dodaj projekt</span>
         <span v-else>Wysyłanie...</span>
       </button>
-      <img src="../assets/close.svg" @click="addBoxActive = !addBoxActive" class="close-icon">
+      <CloseIcon class="close-icon" @click="addBoxActive = !addBoxActive" />
     </form>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
-import { useStore } from '../pinia/store'
-import DropZone from '../components/DropZone.vue'
+import { useStore } from '../../pinia/store'
+import DropZone from './DropZone.vue'
+import CloseIcon from '@/components/icons/CloseIcon.vue'
 
 const store = useStore()
 const file = ref(null)

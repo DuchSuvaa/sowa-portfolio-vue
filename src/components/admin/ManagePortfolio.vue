@@ -9,9 +9,9 @@
 
 <script setup>
 import { onMounted } from 'vue'
-import { useStore } from '../pinia/store'
-import AddItem from '../components/AddItem.vue'
-import ListItem from '../components/ListItem.vue'
+import { useStore } from '../../pinia/store'
+import AddItem from './AddItem.vue'
+import ListItem from '../ListItem.vue'
 
 const store = useStore()
 
